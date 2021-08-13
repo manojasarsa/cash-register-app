@@ -1,0 +1,17 @@
+body{
+    background-color: #3cc47c;
+    color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+button {
+    margin: 1rem;
+    width: 10vw;
+    
+}
+
