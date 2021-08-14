@@ -36,7 +36,7 @@ checkButton.addEventListener("click", function validateInput() {
     hideMessage();
     if ( billAmt.value > 0 ) {
 
-        if ( cashGiven.value >= billAmt.value ) {
+        if ( Number(cashGiven.value) >= Number(billAmt.value) ) {
 
             const cashToBeReturned = cashGiven.value - billAmt.value;
 
