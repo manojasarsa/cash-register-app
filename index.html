@@ -12,13 +12,19 @@
         <h1 class="heading">Cash Register Manager</h1>
         <p class="description"> Enter Bill Amount and Cash Given by the customer and know minimum number of notes to return.</p>
 
-        <label for = "bill-amount" >Bill Amount : </label>  
+        <label for = "bill-amount" >Bill Amount : </label>
         <input type="text" id="bill-amount" />
 
-        <label for = "cash-given" >Cash Given : </label>
-        <input type="text" id="cash-given" />
+        <button id="next-button">Next</button>
 
-        <button id="check-button">Check</button>
+        <div class="cashReceivedArea">                          
+
+
+            <label for = "cash-given" >Cash Given : </label>
+            <input type="text" id="cash-given" />
+
+            <button id="check-button">Check</button>
+        </div> 
 
         <p id="error-message"></p>
 
@@ -50,6 +56,6 @@
     </div>
     <script src="app.js" type="text/javascript"> </script>
 </body>
-   
-    
+
+
 </html>
