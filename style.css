@@ -1,40 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
 
-body{
-    font-family: 'Source Serif Pro', serif;
-    background-color: #6366F1;
+:root {
+    --primary-blue: #eca468;
+    --faint-blue: #EFF6FF;
 }
 
-h1{
-    text-align: center;
-    padding: 2rem;
-    background-color: ;
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
 }
 
-label {
-    display: block;
-    text-align: center;
-    padding: 1rem;
+body {
+    margin: 0;
 }
 
-button{
-    display: block;
-    text-align: center;
+.section {
+    width: 100%;
+    max-width: 600px;
+    min-height: 200px;
     margin: auto;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    font-family: 'Source Serif Pro', serif;
-    font-size: larger;
-}
-
-button:hover {
-    background-color: black;
-    color: white
-}
-.container{
-    margin:auto;
+    padding: 2rem 1rem;
     text-align: center;
+    background-color: var(--primary-blue);
 }
 
+h1,
+p {
+    color: black;
+}
 
+.label {
+    font-size: 1.3rem;
+    padding: 1.5rem 1rem 0.5rem;
+    color: black;
+}
 
+input {
+    width: 100%;
+    padding: 1rem;
+    height: 50px;
+    display: block;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    display: block;
+    font-size: 1rem;
+    border: none;
+    margin: 1rem auto 0;
+    background-color: var(--faint-blue);
+    color: black;
+    font-weight: bold;
+}
+
+#reset {
+    display: none;
+}
+
+.cashGivenInput {
+    display: none;
+}
+
+.changeReturn {
+    display: none;
+}
+
+.errorMsg {
+    padding-top: 1rem;
+    color: red;
+    font-weight: bold;
+}
+
+#output {
+    margin: 1rem 0;
+}
+
+#output table,
+th,
+td {
+    padding: 0.25rem;
+    color: var(--primary-blue);
+    background-color: var(--faint-blue);
+    border: 2px solid var(--primary-blue);
+    border-collapse: collapse;
+}
+
+.noOfNotes {
+    background-color: white;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th,
+td {
+    word-wrap: break-word;
+    color: black;
+}

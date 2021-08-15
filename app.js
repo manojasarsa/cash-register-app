@@ -1,79 +1,107 @@
-const billAmt = document.querySelector("#bill-amount");
+const billAmount = document.querySelector("#billAmount");
 
-const nextButton = document.querySelector("#next-button");
+const cashGiven = document.querySelector("#cashGiven");
 
-const cashGiven = document.querySelector("#cash-given");
+const errorDiv = document.querySelector(".errorMsg");
 
-const cashReceivedDiv =document.querySelector(".cashReceivedArea")
-// new line
+const cashGivenDiv = document.querySelector(".cashGivenInput");
 
-const checkButton = document.querySelector("#check-button");
+const changeReturnDiv = document.querySelector(".changeReturn");
 
-const message = document.querySelector("#error-message");
+const output = document.querySelector("#output");
 
-const countNotes = document.querySelectorAll(".no-of-notes");
+const nextBtn = document.querySelector("#nextBtn");
 
-const notes = [ 2000, 500, 100, 20, 10, 5, 1 ] ;
+const checkBtn = document.querySelector("#checkBtn");
 
+const resetBtn = document.querySelector("#reset");
 
+const noOfNotes = document.querySelectorAll(".noOfNotes");
 
-// new line
-nextButton.addEventListener("click", function validateBillInput() {
-    hideMessage();
-    if(billAmt.value > 0){
-        nextButton.style.display="none";
-        cashReceivedDiv.style.display="block";
+const arrayNoteAmount = [2000, 500, 200, 100, 50, 20, 10, 5, 1];
+
+//We are displaying cashGivenInput field only after billAmount is filled
+
+nextBtn.addEventListener('click', () => {
+    hideError();
+    if (Number(billAmount.value) > 0) {
+        nextBtn.style.display = "none";
+        cashGivenDiv.style.display = "block";
+    } else {
+        showError("Enter valid bill amount.");
     }
-    else {
-        showMessage("Bill amount should be greater than zero")
-    }
-}
-)
-//new line till here
+})
 
-checkButton.addEventListener("click", function validateInput() {
 
-    hideMessage();
-    if ( billAmt.value > 0 ) {
+checkBtn.addEventListener('click', () => {
+    clearNoOfNotes();
+    hideError();
 
-        if ( Number(cashGiven.value) >= Number(billAmt.value) ) {
+    let billAmountValue = Number(billAmount.value);
+    let cashGivenValue = Number(cashGiven.value);
 
-            const cashToBeReturned = cashGiven.value - billAmt.value;
-
-            calculateNotes(cashToBeReturned);
+    if (billAmountValue > 0 && cashGivenValue > 0) {
+        if (!Number.isInteger(cashGivenValue)) {
+            showError("Enter valid amount in cash given field.");
+            resetBtn.style.display = "block";
+            return;
         }
-        else{
-            showMessage("Bill amount should be less than or equal to Cash given. ");
+        if (billAmountValue > cashGivenValue) {
+            showError("Cash given is less than bill, please enter right amount.");
+            resetBtn.style.display = "block";
+            return;
         }
+
+        calculateNotes(billAmountValue, cashGivenValue);
+    } else {
+        showError("Enter valid bill amount & cash given to continue.");
+        resetBtn.style.display = "block";
     }
-    else if (isNaN(billAmt.value)) { 
-        showMessage("Please enter a numerical value")
+})
+
+
+resetBtn.addEventListener('click', () => {
+    window.location.reload();
+})
+
+function calculateNotes(bill, cash) {
+    let returnAmount = cash - bill;
+
+    if (returnAmount < 1) {
+        showError("No amount should be returned.");
+        resetBtn.style.display = "block";
+        return;
     }
-    else {
-        showMessage("Enter Valid Input")
-    }
-}) ;
 
-function calculateNotes(cashToBeReturned) {
+    changeReturnDiv.style.display = "block";
+    resetBtn.style.display = "block";
 
-    for ( let i = 0; i < notes.length ; i++ ) {
-
-        var numberOfNotes = Math.trunc( cashToBeReturned / notes[i] );
-
-        cashToBeReturned = cashToBeReturned % notes[i];
-
-        countNotes[i].innerText = numberOfNotes;
+    for (let i = 0; i < arrayNoteAmount.length; i++) {
+        returnAmount = compare(returnAmount, arrayNoteAmount[i], i);
     }
 }
 
-function hideMessage(){
-    message.style.display="none";
-
+function compare(remainder, noteAmount, index) {
+    if (remainder >= noteAmount) {
+        let notes = Math.floor(remainder / noteAmount);
+        remainder = remainder - notes * noteAmount;
+        noOfNotes[index].innerText = `${notes}`;
+    }
+    return remainder;
 }
 
-function showMessage(msg){
-    message.style.display="block";
-    message.innerText = msg;
+function clearNoOfNotes() {
+    for (let notes of noOfNotes) {
+        notes.innerText = "";
+    }
 }
 
+function showError(text) {
+    errorDiv.style.display = "block";
+    errorDiv.innerText = text;
+    changeReturnDiv.style.display = "none";
+}
 
+function hideError() {
+    errorDiv.style.display = "none";
+}
