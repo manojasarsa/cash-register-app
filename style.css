@@ -1,39 +1,40 @@
-/* body{
-    background-color: #3cc47c;
-    color: black;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
-}
-
-button {
-    margin: 1rem;
-    width: 10vw;
-    
-} */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital@1&display=swap');
 
 body{
-    background-color: #3cc47c;
-    color: black;
+    font-family: 'Source Serif Pro', serif;
+    background-color: #6366F1;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
+h1{
+    text-align: center;
+    padding: 2rem;
+    background-color: ;
 }
 
-button {
-    margin: 1rem;
-    width: 10vw;
-
+label {
+    display: block;
+    text-align: center;
+    padding: 1rem;
 }
 
-/* newline */
-.cashReceivedArea{
-    display: none;
+button{
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-family: 'Source Serif Pro', serif;
+    font-size: larger;
 }
+
+button:hover {
+    background-color: black;
+    color: white
+}
+.container{
+    margin:auto;
+    text-align: center;
+}
+
+
 
